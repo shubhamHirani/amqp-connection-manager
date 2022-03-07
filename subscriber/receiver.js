@@ -1,10 +1,13 @@
 const amqp = require('amqp-connection-manager');
+const { json } = require('express/lib/response');
 
 var QUEUE_NAME = 'test';
+
 // Handle an incomming message.
 var onMessage = function (data) {
     var message = JSON.parse(data.content.toString());
-     console.log("receiver: got message", message);
+    console.log(data.properties.headers)
+     console.log("receiver: got message ",message);
      channelWrapper.ack(data);
 }
 

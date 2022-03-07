@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "amqp-connection-manager": "^4.1.1"
+    "amqp-connection-manager": "^4.1.1",
+    "express": "^4.17.3",
+    "jsdom": "^19.0.0"
   }
 }
