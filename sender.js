@@ -18,7 +18,7 @@ var channelWrapper = connection.createChannel({
 // until we connect.  Note that `sendToQueue()` and `publish()` return a Promise which is fulfilled or rejected
 // when the message is actually sent (or not sent.)
 channelWrapper
-  .sendToQueue('test', "shubham")
+  .sendToQueue('test', {name : "shubham"})
   .then(function () {
     return console.log('Message was sent!  Hooray!');
   })
