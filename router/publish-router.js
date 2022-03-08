@@ -9,13 +9,12 @@ router.post('/publish', async(req,res)=>{
     try{
         const start = window.performance.now()
     const exchangeName = req.body.exchangeName
-    const exchangeType = req.body.exchangeType
     const routingKey = req.body.routingKey
     const message = req.body.message
     const headers = req.body.headers
     const deliveryMode = req.body.deliveryMode
     for (let i = 0; i <1000; i++){
-    await publishMessage(exchangeName,exchangeType, routingKey, message, headers, deliveryMode)
+    await publishMessage(exchangeName,routingKey, message, headers, deliveryMode)
     }
     const stop = window.performance.now()
     console.log(stop-start);

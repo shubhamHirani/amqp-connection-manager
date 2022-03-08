@@ -7,25 +7,21 @@ let channelWrapper = null;
 })()
 /**
  * Publish message in RabbitMQ
- * @param  {string} exchangeName
- * @param  {string} exchangeType
  * @param  {string} routingKey
  * @param  {object} message
  * @param  {object={}} headers
  * @param  {number=2} deliveryMode
- * .
+ * 
 */
 
 const publishMessage = async(
     exchangeName,
-    exchangeType,
     routingKey,
     message,
     headers,
     deliveryMode,
     ) => {
-    // Publish message to the provided route and exchange
-
+    // Publish message to the provided route and exchange  
     await channelWrapper.publish(
         exchangeName, 
         routingKey, 
