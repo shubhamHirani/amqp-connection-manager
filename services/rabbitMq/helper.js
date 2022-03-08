@@ -1,6 +1,9 @@
 let connect = null;
+let channelWrapper = null;
 (async()=>{
-    connect =await require('../../connection/startConnection')
+    const {createChannelWrapper, startConnection} =await require('../../connection/startConnection')
+    connect = await startConnection()
+    channelWrapper = await createChannelWrapper()
 })()
 /**
  * Publish message in RabbitMQ
@@ -21,16 +24,8 @@ const publishMessage = async(
     headers,
     deliveryMode,
     ) => {
-
-    // Create channel and configure exchange
-    const channelWrapper = await connect.createChannel({
-        json: true,
-        setup: function (channel) {
-          // `channel` here is a regular amqplib `ConfirmChannel`.
-          return channel.assertExchange(exchangeName, exchangeType)
-        },
-      });
     // Publish message to the provided route and exchange
+
     await channelWrapper.publish(
         exchangeName, 
         routingKey, 
@@ -39,9 +34,7 @@ const publishMessage = async(
             deliveryMode:deliveryMode, 
             headers: headers
         }
-    ).then(function () {
-        return console.log('Message was sent!  Hooray!');
-      })
+    )
       .catch(function (err) {
         return console.log('Message was rejected...  Boo!', +err);
       });

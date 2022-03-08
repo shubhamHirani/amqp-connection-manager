@@ -14,7 +14,9 @@ router.post('/publish', async(req,res)=>{
     const message = req.body.message
     const headers = req.body.headers
     const deliveryMode = req.body.deliveryMode
+    for (let i = 0; i <1000; i++){
     await publishMessage(exchangeName,exchangeType, routingKey, message, headers, deliveryMode)
+    }
     const stop = window.performance.now()
     console.log(stop-start);
         res.status(200).send({status : "ok", message : "message sent succesfully"})
