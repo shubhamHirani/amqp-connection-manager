@@ -24,4 +24,9 @@ router.post('/publish', async(req,res)=>{
     }
 })
 
+router.get('/', async(req,res)=>{
+    console.log('checking');
+    res.send('ok')
+})
+
 module.exports = router
