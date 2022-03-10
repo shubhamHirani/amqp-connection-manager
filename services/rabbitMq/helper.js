@@ -21,6 +21,8 @@ const publishMessage = async(
     headers,
     deliveryMode,
     ) => {
+        // exchangeName = 'deadletter'
+        // routingKey = 'anything'
     // Publish message to the provided route and exchange  
     await channelWrapper.publish(
         exchangeName, 
